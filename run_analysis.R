@@ -48,12 +48,12 @@ my.extract$activity_description<- activity_labels[my.extract$activity,2]
 ## task 5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 ## create factors
-my.extract$activity <- as.factor(my.extract$activity)
+my.extract$activity_description <- as.factor(my.extract$activity_description)
 my.extract$subject <- as.factor(my.extract$subject)
 
 ## load dplr library
 library(dplyr)
-my.extract.grouped <- group_by(my.extract, activity, subject)
+my.extract.grouped <- group_by(my.extract, activity_description, subject)
 my.final <- summarise(my.extract.grouped, mean(`tBodyAcc-mean()-X`),
                     mean(`tBodyAcc-mean()-Y`),
                     mean(`tBodyAcc-mean()-Z`),
@@ -121,3 +121,13 @@ my.final <- summarise(my.extract.grouped, mean(`tBodyAcc-mean()-X`),
                     mean(`fBodyBodyGyroMag-std()`),
                     mean(`fBodyBodyGyroJerkMag-mean()`),
                     mean(`fBodyBodyGyroJerkMag-std()`))
+## an altermantive to the code above migh look like the following. However, the above is self explanatory and the function is easily put together with a text edit script
+
+## iterate over all selected features
+## for (i in seq_along(features[,2])){
+
+## use aggreate funtion to summarize data by factors
+    ## my.temp<-aggregate(my.extract[,features[i,2]]~ my.extract$subject + my.extract$activity_description, FUN = "mean")
+    ## just extract the third column where the mean is computed for the selected variable and add it to the final set
+    ## my.final3 <- cbind(my.final3,my.temp[,3])
+##}

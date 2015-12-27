@@ -22,3 +22,6 @@ This task, for convenience was already accomplished during task 1
 
 ## task 5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 We first convert subjects and activities into factors
+We use the group_by() function to agregate by factors (activity description and factors)
+Finally we use the function summarise to calculate the mean for the selected variables
+(an alternative to this one may be to run an iteration over the selected features and call the aggregate function to do the summary)
